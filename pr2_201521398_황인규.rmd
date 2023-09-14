@@ -1,0 +1,150 @@
+---
+title: "PR2 - R기본문법"
+author: "황인규"
+date: "2023-09-14"
+output: html_document
+---
+# 1. R로 계산하기
+## 1.1. 기본연산
+
+```{r}
+31 + 3
+15 - 3 + 7
+13 * 2 - 6 / 2
+13 * (2 - 6) / 2
+
+
+8 %/% 2
+11 %% 3
+
+n <- 21 %% 4
+print(n)
+```
+## 1.2 수학함수 사용
+```{r}
+log(2)
+log(exp(1))
+sqrt(4)
+4^5
+4**5
+round(9.13)
+ceiling(1.41)
+floor(1.95)
+pi
+```
+# 2. 수치 요약하기
+## 2.1 벡터 생성 및 출력
+
+- 정수형 값이 저장된 벡터를 생성하기
+- 벡터 출력해보기
+
+```{r}
+v1 <- 3
+v2 <- c(4, 5)
+v3 <- 3:11
+v4 <- c(v1, v2, v3)
+print(v1)
+print(v2)
+print(v3)
+print(v4)
+
+v1 * 2
+v1/v3
+```
+## 2.3 평균 구하기
+- 평균을 구하는 여러가지 방법
+```{r}
+(1+2+3+4+5+6+7+8+9) / 9
+sum(1,2,3,4,5,6,7,8,9) / 9
+v5 <- 1:9
+sum(v5) / length(v5)
+mean(v5)
+```
+## 2.3 함수 활용
+
+```{r}
+mean(v5)
+var(v5)
+sd(v5)
+median(v5)
+max(v5)
+min(v5)
+v6 <- 1:10
+median(v6)
+```
+# 3. 문자값이 저장된 벡터 생성
+```{r}
+myEmail <- "hwanginkyu42@naver.com"
+birthday <- c("1995년","5월", "24일")
+birthday2 <- paste("1995년","5월", "24일")
+birthday3 <- paste0("1995년","5월", "24일")
+
+print(myEmail)
+print(birthday)
+print(birthday2)
+print(birthday3)
+```
+# 4. 기타 R 활용법
+
+## 4.1 세미콘론 활용 및 변수명만으로 출력하기
+
+```{r}
+mean(v5) ; sd(v5) ; plot(v5)
+myEmail ; birthday
+```
+
+## 4.2 작업폴더 확인 및 변경
+
+- 변경할 폴더는 사전에 만들어져 있는 폴더여야함
+- 본인이 작업할 폴더의 졍로를 setwd("")의 따움표 사이에 입력
+- 작업할 폴더는 본인이 원하는 경로로 지정해주세요.
+- 예) setwd("c:/data")
+```{r}
+getwd()
+#setwd("c:/data")
+gwtwd()
+```
+
+# PR2 연습문제
+
+### 문제1. min-max normalization
+- student_num 이라는 변수에 벡터 c(9,3,8,9,6,6,13)를 할당하고, min-max normalization을 진행하시오.
+
+```{r}
+student_num <- c(9,3,8,9,6,6,13)
+
+nor_minmax = function(x){
+  result = (x - min(x)) / (max(x) - min(x))
+  return(result)
+}
+
+nor_minmax(student_num)
+```
+
+### 문제2. NDVI 구하기
+
+```{r}
+#조건1 
+NIR <- 11
+RED <- 14
+ndvi_maker = function(a, b){
+  return((a - b)/(a + b))
+}
+#조건 2
+print(ndvi_maker(NIR, RED))
+```
+### 문제3. Dov와 DoD 계산하기
+
+```{r}
+NN = 10
+TF = 8
+DF = 3
+tw = 0.5
+n = 3
+j = 2
+
+DoV = (TF/NN) * 1 - tw*(n-j)
+DoD = (DF/NN) * 1 - tw*(n-j)
+print(DoV)
+print(DoD)
+```
